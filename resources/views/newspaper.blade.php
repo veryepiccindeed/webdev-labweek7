@@ -1,4 +1,4 @@
-<!-- resources/views/final-year-projects.blade.php -->
+<!-- resources/views/newspaper.php -->
 
 <!DOCTYPE html>
 <html lang="en">
