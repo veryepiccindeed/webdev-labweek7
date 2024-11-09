@@ -31,7 +31,7 @@
         <button type="submit" name="sort" value="desc" {{ $sort === 'desc' ? 'disabled' : '' }}>Descending Tahun Terbit</button>
     </form>
 
-    <!-- Tabel Data Final Year Project -->
+    <!-- Tabel Data Newspaper -->
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
