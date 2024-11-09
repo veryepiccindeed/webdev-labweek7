@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class CD extends Model
 {
     use HasFactory;
+    /**
+     * fillable
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'judul',
+        'tahun_terbit',
+        'penerbit',
+    ];
 }
