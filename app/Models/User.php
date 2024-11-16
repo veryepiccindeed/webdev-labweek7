@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'admin',
     ];
 
     /**
@@ -42,4 +43,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+     // Metode untuk memeriksa apakah pengguna adalah admin
+     public function isAdmin()
+     {
+         return $this->admin === true; // Mengembalikan true jika admin
+     }
+ 
+     // Metode untuk memeriksa apakah pengguna adalah librarian
+     public function isLibrarian()
+     {
+         return $this->admin === false; // Mengembalikan true jika librarian
+     }
 }

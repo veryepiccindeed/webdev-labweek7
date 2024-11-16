@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use App\Models\CD;
 use App\Models\Newspaper;
 use App\Models\FinalYearProject;
+use App\Models\Jurnal;
+use App\Models\Buku;
 
 class BuatNgisiTugas extends Seeder
 {
@@ -76,6 +78,39 @@ class BuatNgisiTugas extends Seeder
             'penulis' => 'Asep',
             'jumlah_halaman' => 90,
         ]);
+
+        Jurnal::create([
+            'judul' => 'Ini Namanya Jurnal',
+            'tahun_terbit' => 2021,
+            'penerbit' => 'Gramedia',
+            'penulis' => 'Asep',
+            'jumlah_halaman' => 90,
+        ]);
+
+        Jurnal::create([
+            'judul' => 'Itu Namanya Jurnal',
+            'tahun_terbit' => 2021,
+            'penerbit' => 'Gramedoi',
+            'penulis' => 'Supriadi',
+            'jumlah_halaman' => 90,
+        ]);
+
+        Buku::create([
+            'judul' => 'Kisah Bawang Putih, Bawang Merah, Bawang Bombay, Daun Bawang',
+            'tahun_terbit' => 2021,
+            'penerbit' => 'Toko Buku',
+            'penulis' => 'Tono',
+            'jumlah_halaman' => 90,
+        ]);
+
+        Buku::create([
+            'judul' => 'Memasak Nasi Goreng tanpa Nasi',
+            'tahun_terbit' => 2021,
+            'penerbit' => 'SangTerbit',
+            'penulis' => 'Rusdi',
+            'jumlah_halaman' => 90,
+        ]);
+
 
     }
 }

@@ -19,6 +19,6 @@ class Jurnal extends Model
         'tahun_terbit',
         'penerbit',
         'penulis',
-        'halaman',
+        'jumlah_halaman',
     ];
 }

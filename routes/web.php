@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\CD;
+use App\Http\Controllers\CDController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\JurnalController;
 use App\Models\FinalYearProject;
 use App\Models\Newspaper;
+use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,17 +27,11 @@ Route::get('/name', function () {
     return view('name'); // Menampilkan view 'name'
 });
 
-Route::get('/cd', function () {
-    $cds = CD::orderBy('tahun_terbit', 'asc')->get(); // Default ke ascending
-    return view('cd', compact('cds'));
-});
+// Rute untuk pemilihan role
+Route::get('/role/select', [RoleController::class, 'select'])->name('role.select');
+Route::post('/role/store', [RoleController::class, 'store'])->name('role.store');
 
-Route::get('/final-year-projects', function () {
-    $finalyearprojects = FinalYearProject::orderBy('tahun_terbit', 'asc')->get();
-    return view('final-year-projects', compact('finalyearprojects'));
-});
-
-Route::get('/newspaper', function () {
-    $newspapers = Newspaper::orderBy('tahun_terbit', 'asc')->get();
-    return view('newspaper', compact('newspapers'));
+// Rute untuk buku dengan middleware role.select
+Route::middleware(['role.select'])->group(function () {
+    Route::resource('buku', BukuController::class);
 });
