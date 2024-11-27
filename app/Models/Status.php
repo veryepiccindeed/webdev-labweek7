@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CD extends Model
+class Status extends Model
 {
     use HasFactory;
     /**
@@ -17,10 +17,9 @@ class CD extends Model
         'judul',
         'tahun_terbit',
         'penerbit',
+        'penulis',
+        'jumlah_halaman',
+        'koleksi',
+        'isApproved',
     ];
-
-    public function cd()
-    {
-    return $this->belongsTo(CD::class, 'item_id'); // Assuming item_id refers to the Buku model
-    }
 }

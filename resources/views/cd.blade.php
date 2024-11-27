@@ -18,6 +18,26 @@
         <button type="submit" name="sort" value="desc" {{ $sort === 'desc' ? 'disabled' : '' }}>Descending Tahun Terbit</button>
     </form>
 
+    <!-- Form untuk menambah atau mengedit CD -->
+    <h2>{{ isset($cd) ? 'Edit CD' : 'Tambah CD' }}</h2>
+    <form action="{{ isset($cd) ? route('cd.update', $cd->id) : route('cd.store') }}" method="POST">
+        @csrf
+        @if(isset($cd))
+            @method('PUT')
+        @endif
+
+        <label for="judul">Judul:</label>
+        <input type="text" name="judul" id="judul" value="{{ old('judul', $cd->judul ?? '') }}" required>
+
+        <label for="tahun_terbit">Tahun Terbit:</label>
+        <input type="number" name="tahun_terbit" id="tahun_terbit" value="{{ old('tahun_terbit', $cd->tahun_terbit ?? '') }}" required>
+
+        <label for="penerbit">Penerbit:</label>
+        <input type="text" name="penerbit" id="penerbit" value="{{ old('penerbit', $cd->penerbit ?? '') }}" required>
+
+        <button type="submit">{{ isset($cd) ? 'Update' : 'Simpan' }}</button>
+    </form>
+
     <!-- Tabel Data CD -->
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
@@ -25,6 +45,7 @@
                 <th>Judul</th>
                 <th>Tahun Terbit</th>
                 <th>Penerbit</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +54,14 @@
                     <td>{{ $cd->judul }}</td>
                     <td>{{ $cd->tahun_terbit }}</td>
                     <td>{{ $cd->penerbit }}</td>
+                    <td>
+                        <a href="{{ route('cd.edit', $cd->id) }}">Edit</a>
+                        <form action="{{ route('cd.destroy', $cd->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menghapus CD ini?');">Hapus</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

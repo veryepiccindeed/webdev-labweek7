@@ -19,6 +19,11 @@ class Jurnal extends Model
         'tahun_terbit',
         'penerbit',
         'penulis',
-        'halaman',
+        'jumlah_halaman',
     ];
+
+    public function jurnal()
+    {
+    return $this->belongsTo(Jurnal::class, 'item_id'); // Assuming item_id refers to the Buku model
+    }
 }
