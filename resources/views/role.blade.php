@@ -14,14 +14,12 @@
 
     <form action="{{ route('role.store') }}" method="POST">
         @csrf
-        <label>
-            <input type="radio" name="role" value="admin" required> Admin
-        </label>
-        <br>
-        <label>
-            <input type="radio" name="role" value="librarian" required> Librarian
-        </label>
-        <br>
+        @foreach($roles as $key => $role)
+            <label>
+                <input type="radio" name="role" value="{{ $key }}" required> {{ $role }}
+            </label>
+            <br>
+        @endforeach
         <button type="submit">Pilih</button>
     </form>
 </body>

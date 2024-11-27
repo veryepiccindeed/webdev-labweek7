@@ -18,4 +18,9 @@ class CD extends Model
         'tahun_terbit',
         'penerbit',
     ];
+
+    public function cd()
+    {
+    return $this->belongsTo(CD::class, 'item_id'); // Assuming item_id refers to the Buku model
+    }
 }

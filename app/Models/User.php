@@ -18,10 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'admin',
+    'name',
+    'email',
+    'password',
+    'role',
     ];
 
     /**
@@ -31,7 +31,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -40,19 +39,11 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
     ];
 
-     // Metode untuk memeriksa apakah pengguna adalah admin
-     public function isAdmin()
-     {
-         return $this->admin === true; // Mengembalikan true jika admin
-     }
- 
-     // Metode untuk memeriksa apakah pengguna adalah librarian
-     public function isLibrarian()
-     {
-         return $this->admin === false; // Mengembalikan true jika librarian
-     }
+    public function peminjaman()
+    {
+        return $this->hasMany(Peminjaman::class);
+    }
+   
 }

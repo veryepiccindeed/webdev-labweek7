@@ -21,4 +21,9 @@ class Buku extends Model
         'penulis',
         'jumlah_halaman',
     ];
+
+    public function buku()
+    {
+    return $this->belongsTo(Buku::class, 'item_id'); // Assuming item_id refers to the Buku model
+    }
 }

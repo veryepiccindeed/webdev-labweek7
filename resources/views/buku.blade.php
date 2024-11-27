@@ -8,6 +8,12 @@
 <body>
     <h1>Manajemen Buku</h1>
 
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <!-- Form untuk tombol sorting -->
     <form action="/buku" method="GET">
         @php $sort = request('sort', 'asc'); @endphp <!-- Default ke 'asc' -->

@@ -4,28 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Log;
 
 class RoleController extends Controller
 {
-      // Menampilkan halaman pemilihan role
+   /**
+     * Show the role selection form.
+     *
+     * @return \Illuminate\View\View
+     */
     public function select()
     {
-        return view('role'); // Tampilkan view pemilihan role
+        // Define the available roles
+        $roles = [
+            'admin' => 'Admin',
+            'librarian' => 'Librarian',
+            'lecturer' => 'Lecturer',
+            'student' => 'Student',
+        ];
+
+        return view('role', compact('roles'));
     }
 
-    // Menyimpan pilihan role
+    /**
+     * Store the selected role for the authenticated user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
+        // Validate the incoming request
         $request->validate([
-            'role' => 'required|in:admin,librarian', // Validasi role
+            'role' => 'required|in:admin,librarian,lecturer,student', // Ensure the role is valid
         ]);
 
-        // Simpan role ke session atau database sesuai kebutuhan
+        // Get the authenticated user
         $user = Auth::user();
-        $user->admin = $request->role === 'admin';
+
+        // Update the user's role
+        $user->role = $request->input('role');
         $user->save();
 
-        // Arahkan pengguna ke halaman yang sesuai berdasarkan role
-        return redirect()->route('home')->with('success', 'Role selected successfully.');
+        // Redirect to a desired page with a success message
+        return redirect()->route('buku.index')->with('success', 'Role has been successfully assigned.');
     }
 }

@@ -18,8 +18,8 @@
         <button type="submit" name="sort" value="desc" {{ $sort === 'desc' ? 'disabled' : '' }}>Descending Tahun Terbit</button>
     </form>
 
-     <!-- Form untuk menambah atau mengedit CD -->
-     <h2>{{ isset($cd) ? 'Edit CD' : 'Tambah CD' }}</h2>
+    <!-- Form untuk menambah atau mengedit CD -->
+    <h2>{{ isset($cd) ? 'Edit CD' : 'Tambah CD' }}</h2>
     <form action="{{ isset($cd) ? route('cd.update', $cd->id) : route('cd.store') }}" method="POST">
         @csrf
         @if(isset($cd))
